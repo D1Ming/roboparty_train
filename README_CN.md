@@ -35,13 +35,13 @@ ATOM01-Train 基于最新版本的 IsaacSim/IsaacLab 构建，建议跟随 ATOM0
 - 独立于 Isaac Lab 安装克隆此仓库（即在 `IsaacLab` 目录之外）：
 
 ```bash
-git clone https://github.com/Roboparty/atom01_train.git
+git clone https://github.com/Roboparty/roboparty_train.git
 ```
 
 - 使用已安装 Isaac Lab 的 python 解释器安装库：
 
 ```bash
-cd atom01_train
+cd roboparty_train
 git submodule update --init --recursive
 cd robolab
 pip install -e .
@@ -70,30 +70,30 @@ python robolab/scripts/rsl_rl/play.py --task=<ENV_NAME> --num_envs=1
 ```
 ### 测试(AMP)
 ```bash
-python robolab/scripts/rsl_rl/play_amp.py --task=Atom01-AMP-Play --num_envs=1
+python robolab/scripts/rsl_rl/play_amp.py --task=RPO-AMP-Play --num_envs=1
 ```
 ### 测试(Beyondmimic)
 ```bash
-python robolab/scripts/rsl_rl/play_bm.py --task=Atom01-BeyondMimic --num_envs=1
+python robolab/scripts/rsl_rl/play_bm.py --task=RPO-BeyondMimic --num_envs=1
 ```
 ### 测试(Parkour)
 ```bash
-python robolab/scripts/rsl_rl/play_parkour.py --task=Atom01-Parkour-Play --num_envs=1
+python robolab/scripts/rsl_rl/play_parkour.py --task=RPO-Parkour-Play --num_envs=1
 ```
 导出 onnx 模型时, 请设置 `num_envs=1` 并添加 `--exportonnx`
 ```bash
-python robolab/scripts/rsl_rl/play_parkour.py --task=Atom01-Parkour-Play --num_envs=1 --exportonnx
+python robolab/scripts/rsl_rl/play_parkour.py --task=RPO-Parkour-Play --num_envs=1 --exportonnx
 ```
 
 ### Sim2Sim
 ```bash
-python robolab/scripts/mujoco/sim2sim_atom01.py --load_model "{exported/policy.pt model full path here}"
+python robolab/scripts/mujoco/sim2sim_rpo.py --load_model "{exported/policy.pt model full path here}"
 ```
 
 ### 数据集准备
 对于 AMP 和 BeyondMimic 获取数据集的工作流程, 请查看 [GMR](https://github.com/Roboparty/GMR).
 
-通过GMR获得的数据集中的关节顺序与机器人的 URDF 和 XML 中的顺序一致，但这与 Isaac Lab 所使用的顺序不同。因此，我们需要准备一个包含关节映射信息的`.yaml`文件（如`scripts/tools/retarget/config/atom01.yaml`所示），并在训练前使用`scripts/tools/retarget/dataset_retarget.py`重新排序关节序列。
+通过GMR获得的数据集中的关节顺序与机器人的 URDF 和 XML 中的顺序一致，但这与 Isaac Lab 所使用的顺序不同。因此，我们需要准备一个包含关节映射信息的`.yaml`文件（如`scripts/tools/retarget/config/rpo.yaml`所示），并在训练前使用`scripts/tools/retarget/dataset_retarget.py`重新排序关节序列。
 
 
 ## 参考和致谢
